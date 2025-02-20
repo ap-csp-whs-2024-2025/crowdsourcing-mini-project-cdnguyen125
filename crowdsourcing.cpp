@@ -16,16 +16,23 @@ int main()
     std::vector<std::string> songname = {};
     std::vector<std::string> songartist = {};
     std::vector<int> songduration = {};
-    std::cout << "would you like to enter a song in to the database? (y/n)" << std::endl;
+    std::cout << "would you like to enter a song into the database? (y/n)" << std::endl;
 
     std::string answer;
     std::cin >> answer;
 
+    while (answer != "y" && answer != "Y" && answer != "n" && answer != "N")
+    {
+        std::cout << std::endl << "invalid response; try again" << std::endl << "would you like to enter another song? (y/n)" << std::endl;
+        std::cin >> answer;
+    }
+
+    
     while (answer != "n" && answer!= "N")
     {
         std::cin.ignore();
 
-        std::cout << std::endl << "Enter the following information in order: " << std::endl << "1. any song name" << std::endl << "2. the song's artist" << std::endl << "3. the song's duration IN SECONDS" << std::endl;
+        std::cout << std::endl << "Enter the following information in order: " << std::endl << "1. the song name" << std::endl << "2. the song's artist" << std::endl << "3. the song's duration IN SECONDS" << std::endl << std::endl;
     
         std::string sName;
         std::string sArtist;
@@ -40,12 +47,19 @@ int main()
 
         std::cout << std::endl << "would you like to enter another song? (y/n)" << std::endl;
         std::cin >> answer;
+
+
+        while (answer != "y" && answer != "Y" && answer != "n" && answer != "N")
+        {
+            std::cout << std::endl << "invalid response; try again" << std::endl << "would you like to enter another song? (y/n)" << std::endl;
+            std::cin >> answer;
+        }
     }
    
     int index = 0;
     int durTotal = 0;
     int durMax = songduration[0];
-    int durMin = songduration [0];
+    int durMin = songduration[0];
     while (index < songduration.size())
     {
         durTotal = durTotal + songduration[index];
