@@ -11,6 +11,37 @@
 #include <string>    // std::string, std::getline
 #include <vector>    // std::vector
 
+
+void LongestSongInfo (std::vector<std::string> names, std::vector<std::string> artists, std::vector<int> duration, int durMax)
+{
+    int durIndex = 0;
+    while (duration[durIndex] != durMax)
+    {
+        durIndex = durIndex  + 1;
+    }
+    std::cout << "the song with the longest duration was: " << names[durIndex] << " by " << artists[durIndex] << ", " << durMax << " seconds"<< std::endl;
+}
+
+void ShortestSongInfo (std::vector<std::string> names, std::vector<std::string> artists, std::vector<int> duration, int durMin)
+{
+    int durIndex2 = 0;
+    while (duration[durIndex2] != durMin)
+    {
+        durIndex2 = durIndex2 + 1;
+    }
+    std::cout << "the song with the least duration was: " << names[durIndex2] << " by " << artists[durIndex2] << ", " << durMin << " seconds"<< std::endl;
+}
+
+bool validAns( std::string answer)
+{
+    if (answer != "y" && answer != "Y" && answer != "n" && answer != "N")
+    {
+        return false;
+    }
+    return true;
+}
+
+
 int main()
 {
     std::vector<std::string> songname = {};
@@ -21,7 +52,7 @@ int main()
     std::string answer;
     std::cin >> answer;
 
-    while (answer != "y" && answer != "Y" && answer != "n" && answer != "N")
+    while (!validAns(answer))
     {
         std::cout << std::endl << "invalid response; try again" << std::endl << "would you like to enter another song? (y/n)" << std::endl;
         std::cin >> answer;
@@ -49,7 +80,7 @@ int main()
         std::cin >> answer;
 
 
-        while (answer != "y" && answer != "Y" && answer != "n" && answer != "N")
+        while (!validAns (answer))
         {
             std::cout << std::endl << "invalid response; try again" << std::endl << "would you like to enter another song? (y/n)" << std::endl;
             std::cin >> answer;
@@ -80,21 +111,10 @@ int main()
     durAvg = durTotal/songduration.size();
     std::cout << "the average duration of your songs is: " << durAvg << " seconds" << std::endl;
 
+    LongestSongInfo(songname, songartist, songduration, durMax);
+
+    ShortestSongInfo(songname, songartist, songduration, durMin);
     
-    int durIndex = 0;
-    while (songduration[durIndex] != durMax)
-    {
-        durIndex = durIndex  + 1;
-    }
-    std::cout << "the song with the longest duration was: " << songname[durIndex] << " by " << songartist[durIndex] << ", " << durMax << " seconds"<< std::endl;
-
-
-    int durIndex2 = 0;
-    while (songduration[durIndex2] != durMin)
-    {
-        durIndex2 = durIndex2 + 1;
-    }
-    std::cout << "the song with the least duration was: " << songname[durIndex2] << " by " << songartist[durIndex2] << ", " << durMin << " seconds"<< std::endl;
 
    
     return 0;
